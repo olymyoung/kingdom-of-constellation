@@ -1,0 +1,158 @@
+@font-face {
+    font-family: 'constan';
+    src: url('../assets/font/constan.ttf') format('truetype');
+}
+/* 全局样式重置与基础设置 */
+* {
+    font-family: constan, georia, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a1a30;
+    color: #f0f0f0;
+    line-height: 1.6;
+}
+
+/* 导航栏样式 */
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px 5%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 10;
+}
+
+nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffd700;
+}
+
+/* 头部英雄区样式 */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 810px;
+    background: url('../assets/image/landing page/hero image.png') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5%;
+    overflow: hidden;
+}
+
+/* 英雄区渐进模糊遮罩 */
+.hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(10, 26, 48, 0) 0%,
+        rgba(10, 26, 48, 0) 10%,
+        rgba(10, 26, 48, 0) 50%,
+        rgba(10, 26, 48, 0.3) 70%,
+        rgba(10, 26, 48, 0.9) 100%
+    );
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* 标题+Logo容器样式 */
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* 文字与Logo的间距，可微调 */
+}
+.hero h1 {
+    font-size: 400%;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 150%;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* 序曲部分样式 */
+.prelude {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 5%;
+}
+
+.prelude h2 {
+    text-align: center;
+    font-size: 400%;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.prelude-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    font-size: 150%;
+    font-weight: bold;
+    line-height: 1.8;
+}
+
+/* 底部英雄图样式 */
+.bottom-hero {
+    width: 100%;
+    height: 810px;
+    background: url('../assets/image/landing page/footer.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+/* 底部渐进模糊遮罩：紧贴prelude交界处（从交界线向下渐变） */
+.bottom-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; /* 遮罩起点 = prelude和bottom-hero的交界线 */
+    left: 0;
+    width: 100%;
+    height: 20%;
+    /* 核心：渐变从顶部（交界线）开始，向下逐渐变深，向上完全透明 */
+    background: linear-gradient(
+        to top, /* 渐变方向：从交界线向下 */
+        rgba(10, 26, 48, 0) 0%,       /* 顶部（交界线）：完全透明，不遮挡交界位置 */
+        rgba(10, 26, 48, 0.2) 20%,    /* 交界线下20%：轻微遮罩 */
+        rgba(10, 26, 48, 0.6) 50%, 
+        rgba(10, 26, 48, 0.6) 70%,   /* 中间：中度遮罩 */
+        rgba(10, 26, 48, 0.95) 100%   /* 底部：完全深色遮罩 */
+    );
+    backdrop-filter: blur(2px);      /* 模糊效果，和顶部hero保持一致 */
+    -webkit-backdrop-filter: blur(2px); /* 兼容Safari */
+    z-index: 1; /* 遮罩在背景图之上，内容之下 */
+}
